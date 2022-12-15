@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'lessons_grid.dart';
 
-Widget lessonsBody(BuildContext context){
+Widget lessonsBody(BuildContext context, Function refresh){
   TextEditingController searchController = TextEditingController();
-  LessonGrid gridObject = LessonGrid();
+  // LessonGrid gridObject = LessonGrid(gridFlag);
   return Container(
     padding:
     EdgeInsets.only(top: (MediaQuery.of(context).size.height) / 5),
@@ -56,7 +56,7 @@ Widget lessonsBody(BuildContext context){
             ]),
           ),
           // SizedBox( height: MediaQuery.of(context).size.height / 75),
-          gridObject.gridWidgetData()
+          gridWidgetData()
         ]),
   );
 }

@@ -15,16 +15,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int selectedItem = 0;
-  bool flag = false;
+  bool appBarFlag = false;
+  bool gridFlag = false;
+
+  refresh(){
+    setState(() {
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> pages = [lessonsBody(context), const PlatFormBody(),newsBody(),const TutorBody()];
+    List<Widget> pages = [lessonsBody(context, refresh), const PlatFormBody(),newsBody(),const TutorBody()];
 
     return Scaffold(
       backgroundColor: const Color(0xfffcfcfc),
       extendBodyBehindAppBar: true,
-      appBar: flag == false ? myAppBar(context) : tutorAppBar(),
+      appBar: appBarFlag == false ? myAppBar(context) : tutorAppBar(context),
       body: Stack(children: [
         Column(
           children: [
@@ -38,8 +51,6 @@ class _HomeState extends State<Home> {
           ),
             Expanded(
               child: Container(
-                // width: MediaQuery.of(context).size.width,
-                // height: (MediaQuery.of(context).size.height)* 2/3,
                 color: Colors.black12,
               ),
             )
@@ -54,12 +65,15 @@ class _HomeState extends State<Home> {
   _onItemTap(int index) {
     setState(() {
       selectedItem = index;
+      if(index == 3){
+        appBarFlag = true;
+      }else{
+        appBarFlag = false;
+      }
     });
   }
 
-  refresh(){
-    setState(() {});
-  }
+
 
   BottomNavigationBar myNavBar(){
     return BottomNavigationBar(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-AppBar tutorAppBar(){
+AppBar tutorAppBar(BuildContext context){
   return AppBar(
-    bottom: const TabBar(
-      tabs: [
-        Tab(icon: Icon(Icons.video_call),text: 'Online',),
-        Tab(icon: Icon(Icons.person),text: 'In Person',)
-      ],
-    ),
+    backgroundColor: Colors.transparent,
+    // toolbarHeight: MediaQuery
+    //     .of(context)
+    //     .size
+    //     .height / 18,
+    elevation: 0,
   );
 }

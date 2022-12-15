@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-class LessonGrid {
   List<Map> gridData = [
     {'icon': Icons.search, 'text': 'Maths'},
     {'icon': Icons.catching_pokemon, 'text': 'Science'},
@@ -29,13 +28,27 @@ class LessonGrid {
         ),
         itemCount: gridData.length,
         itemBuilder: (context, index) {
-          return myTile(icon: gridData[index]['icon'], text: gridData[index]['text'].toString());
+          return InkWell(
+              onTap: (){
+               if( gridData.length - 1 == index){
+                 showModalBottomSheet(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                   context: context, builder: (context) {
+                   return GridView.builder(padding: EdgeInsets.only(top: 20,left: 30,right: 30),gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                     crossAxisCount: 2,
+                     childAspectRatio: (7 / 2),
+                     crossAxisSpacing: 20,
+                     mainAxisSpacing: 18,
+                   ),itemCount: gridData.length, itemBuilder: (context, index) => myTile(icon: gridData[index]['icon'], text: gridData[index]['text'].toString(),),);
+                 },);
+               }
+              },
+              child: myTile(icon: gridData.length - 1 == index ? Icons.add : gridData[index]['icon'], text: gridData.length - 1 == index ? "10 More" : gridData[index]['text'].toString()));
         },
       ),
     );
   }
 
-  myTile({required IconData icon, required String text}) {
+  Widget myTile({required IconData icon, required String text}) {
     return Container(
       height: 150,
       width: 300,
@@ -58,4 +71,4 @@ class LessonGrid {
     );
   }
 
-}
+
