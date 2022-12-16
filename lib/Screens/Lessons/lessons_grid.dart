@@ -16,10 +16,13 @@ import 'package:flutter/material.dart';
   ];
 
   //Subject Grid
-  gridWidgetData() {
+  gridWidgetData(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;  //360
+    double screenHeight = MediaQuery.of(context).size.height;  //712
+
     return Expanded(
       child: GridView.builder(
-        padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+        padding: EdgeInsets.fromLTRB(0, screenHeight/50, 0, 10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: (7 / 2),
@@ -33,7 +36,7 @@ import 'package:flutter/material.dart';
                if( gridData.length - 1 == index){
                  showModalBottomSheet(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                    context: context, builder: (context) {
-                   return GridView.builder(padding: EdgeInsets.only(top: 20,left: 30,right: 30),gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                   return GridView.builder(padding: const EdgeInsets.only(top: 20,left: 30,right: 30),gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                      crossAxisCount: 2,
                      childAspectRatio: (7 / 2),
                      crossAxisSpacing: 20,
@@ -62,9 +65,12 @@ import 'package:flutter/material.dart';
             size: 25,
           ),
           const SizedBox(width: 10),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          Flexible(
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
           )
         ],
       ),

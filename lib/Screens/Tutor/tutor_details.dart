@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int index) {
+  double screenWidth = MediaQuery.of(context).size.width;  //360
+  double screenHeight = MediaQuery.of(context).size.height;  //712
+
   return Container(
     // margin: const EdgeInsets.only(bottom: 30),
-    padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+    padding: EdgeInsets.fromLTRB(screenWidth/18, 10, screenWidth/18, 0),
     height: MediaQuery.of(context).size.height,
     width: MediaQuery.of(context).size.width,
+
     decoration: const BoxDecoration(color: Color(0xffFAF8E9)),
     child: Stack(children: [
       SingleChildScrollView(
@@ -20,14 +24,14 @@ tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int in
                 changePageFun(0);
               },
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(screenHeight/50),
                 child: const Icon(
                   Icons.close,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: screenHeight/40,
             ),
             Row(
               children: [
@@ -66,7 +70,7 @@ tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int in
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth/14),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -81,7 +85,7 @@ tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int in
                   ),
                   Container(
                     height: 60,
-                    width: 200,
+                    width: screenWidth/4,
                     // padding:
                     //     const EdgeInsets.symmetric(vertical: 5, horizontal: 50),
                     decoration: BoxDecoration(
@@ -114,22 +118,25 @@ tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int in
         ),
       ),
       Positioned(
-        left: 30,
+        left: screenWidth/18,
         bottom: 15,
         child: Container(
           height: 40,
-          width: 400,
+          width: screenWidth/1.3,
           decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(30),
               boxShadow: const [
                 BoxShadow(blurRadius: 6, spreadRadius: 2, color: Colors.grey)
               ]),
-          child: Row(children: const [
-            SizedBox(
-              width: 130,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            const SizedBox(
+              width: 10,
             ),
-            Text(
+            const Text(
               'Contact Tutor',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -138,9 +145,9 @@ tutorDetails(BuildContext context, Function changePageFun, List<Map> data,int in
               ),
             ),
             SizedBox(
-              width: 15,
+              width: screenWidth/40,
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_rounded,
               color: Colors.white,
             )

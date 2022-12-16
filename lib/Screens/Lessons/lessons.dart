@@ -3,12 +3,15 @@ import 'lessons_grid.dart';
 
 Widget lessonsBody(BuildContext context, Function refresh){
   TextEditingController searchController = TextEditingController();
-  // LessonGrid gridObject = LessonGrid(gridFlag);
+
+  double screenWidth = MediaQuery.of(context).size.width;  //360
+  double screenHeight = MediaQuery.of(context).size.height;  //712
+
   return Container(
     padding:
-    EdgeInsets.only(top: (MediaQuery.of(context).size.height) / 5),
+    EdgeInsets.only(top: (screenHeight) / 5),
     margin: EdgeInsets.symmetric(
-        horizontal: (MediaQuery.of(context).size.width) / 18),
+        horizontal: (screenWidth) / 18),
     child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.start,
@@ -26,11 +29,11 @@ Widget lessonsBody(BuildContext context, Function refresh){
               child: Text(
                 'Search for Learning Material',
                 style: TextStyle(
-                    fontSize: (MediaQuery.of(context).size.height) / 45,
+                    fontSize: (screenHeight) / 45,
                     color: Colors.white),
               )), //18
           SizedBox(
-            height: MediaQuery.of(context).size.height / 75,
+            height: screenHeight / 75,
           ),
 
           Card(
@@ -39,24 +42,26 @@ Widget lessonsBody(BuildContext context, Function refresh){
             child: Row(children: [
               const SizedBox(width: 20),
               const Icon(Icons.search),
-              const SizedBox(width: 15),
+              SizedBox(width: screenWidth/60),
               Container(
                 padding: const EdgeInsets.all(5),
-                width: 300,
-                height: 50,
-                child: TextField(
-                  controller: searchController,
-                  decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Search for terms like "Geometry"',
-                      hintStyle: TextStyle(fontSize: 18)
+                width: screenWidth/1.5,
+                height: screenHeight/15,
+                child: Center(
+                  child: TextField(
+                    controller: searchController,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search for terms like "Geometry"',
+                        hintStyle: TextStyle(fontSize: screenHeight/45)
+                    ),
                   ),
                 ),
               ),
             ]),
           ),
           // SizedBox( height: MediaQuery.of(context).size.height / 75),
-          gridWidgetData()
+          gridWidgetData(context)
         ]),
   );
 }

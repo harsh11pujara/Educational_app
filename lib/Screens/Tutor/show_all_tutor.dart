@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 int tabIndex = 0;
 
+
 Widget showAllTutor(BuildContext context, Function changePageFun, Function refresh, List<Map> data){
   return Container(
     padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height) / 5),
@@ -74,6 +75,7 @@ Widget showAllTutor(BuildContext context, Function changePageFun, Function refre
                         }),
 // in person list-----------------------------------------------------------------------------
                     ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         itemCount: data.length,
                         itemBuilder: (context, index) {
@@ -97,6 +99,8 @@ Widget listTile(
     Map data,
     int index,
     ) {
+  double screenWidth = MediaQuery.of(context).size.width;  //360
+  double screenHeight = MediaQuery.of(context).size.height;  //712
   return GestureDetector(
     onTap: (){
       changePageFun(index);
@@ -109,8 +113,8 @@ Widget listTile(
       child: Row(
         children: [
           Container(
-            margin: const EdgeInsets.all(15),
-            child: CircleAvatar(radius: 35, backgroundImage: AssetImage(data['img'])),
+            margin: EdgeInsets.fromLTRB(5, screenWidth/35, screenWidth/35, screenWidth/35),
+            child: CircleAvatar(radius: screenWidth/9, backgroundImage: AssetImage(data['img'])),
           ),
           Expanded(
             child: Column(
@@ -133,7 +137,7 @@ Widget listTile(
                 Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const Icon(Icons.check_circle_outline),
                   const SizedBox(width: 5),
-                  SizedBox(width: 250, child: Text(data['description']))
+                  SizedBox(width: MediaQuery.of(context).size.width/2.5, child: Text(data['description']))
                 ]),
                 const SizedBox(
                   height: 12,
@@ -151,6 +155,6 @@ Widget listTile(
   );
 }
 
-changeTabIndex(int index){
+changeTabIndex(int index,context){
   tabIndex = index;
 }

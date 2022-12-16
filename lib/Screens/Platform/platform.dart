@@ -22,7 +22,7 @@ class _PlatFormBodyState extends State<PlatFormBody> {
     {
       'heading': 'Meta',
       'img': 'lib/images/milkyway1.jpg',
-      'rating': 3,
+      'rating': 3.7,
       'value': 'Paid',
       'descp':
           'In other words, if the user wants to create a grid with a large (infinite) number of children, then they can use the GridView.builder() constructor with either a SliverGridDelegateWithFixedCrossAxisCount or a SliverGridDelegateWithMaxCrossAxisExtent'
@@ -30,11 +30,19 @@ class _PlatFormBodyState extends State<PlatFormBody> {
     {
       'heading': 'Bettermarks',
       'img': 'lib/images/milkyway1.jpg',
-      'rating': 1,
+      'rating': 4.8,
       'value': 'Free',
       'descp':
           'This property is used when we want to display data dynamically or on-demand DelegateWithFixedCrossAxisCount or a SliverGridDelegateWithMaxCrossAxisExtent'
     },
+    {
+      'heading': 'Apple',
+      'img': 'lib/images/milkyway1.jpg',
+      'rating': 2,
+      'value': 'Free',
+      'descp':
+      'This DelegateWithFixedCrossAxisCount or a SliverGridDelegateWithMaxCrossAxisExtent'
+    }
   ];
 
   @override
@@ -89,7 +97,7 @@ class _PlatFormBodyState extends State<PlatFormBody> {
   Widget platformTile(
       {String heading = 'Blank',
       String img = 'lib/images/milkyway1.jpg',
-      int rating = 1,
+      num rating = 1.0,
       String value = 'Free',
       String description = 'No description'}) {
     return Container(
@@ -118,8 +126,10 @@ class _PlatFormBodyState extends State<PlatFormBody> {
             ),
             Row(children: [
               RatingBar.builder(
+                  initialRating: rating.toDouble(),
+                  allowHalfRating: true,
                   itemSize: 24,
-                  minRating: 1,
+                  minRating: 1.0,
                   ignoreGestures: true,
                   itemBuilder: (context, _) {
                     return const Icon(Icons.star, color: Colors.amber);
